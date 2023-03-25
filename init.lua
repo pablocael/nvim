@@ -81,13 +81,13 @@ vim.opt.listchars = {eol = '↵', tab = '>=', trail = '.'}
 vim.opt.list = true
 vim.opt.number=true
 vim.opt.relativenumber=true
+vim.opt.clipboard = 'unnamedplus'
 
 vim.g.latstatus=2
 vim.g.mapleader = ","
 vim.g.nofixendofline=true
 vim.g.smarttab=true
 vim.g.smartcase=true
-vim.g.clipboard=unnamedplus
 vim.g.tabstop=4
 
 vim.g.shiftwidth=4
