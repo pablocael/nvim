@@ -27,6 +27,19 @@ require('telescope').setup{
     }
   },
 }
+-- Lua:
+-- For dark theme (neovim's default)
+vim.o.background = 'dark'
+-- For light theme
+vim.o.background = 'light'
+
+local c = require('vscode.colors').get_colors()
+require('vscode').setup({
+    -- Alternatively set style in setup
+    style = 'dark'
+})
+
+require('vscode').load()
 
 require('lualine').setup {
   options = {
@@ -298,10 +311,7 @@ return require('packer').startup(function()
 
   use 'nvim-lua/plenary.nvim'
   use { 'neoclide/coc.nvim', branch = 'release'}
-  use { 'Mofiqul/vscode.nvim', config = function()
-      change_style('dark')
-    end
-  }
+  use 'Mofiqul/vscode.nvim'
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
