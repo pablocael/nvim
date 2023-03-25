@@ -1,0 +1,13 @@
+{
+    "diagnostic.errorSign": "✖",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.infoSign": "ℹ",
+    "diagnostic.hintSign": "➤",
+    "suggest.noselect": false,
+    "suggest.echodocSupport": true,
+    "python.jediEnabled": false,
+    "python.formatting.blackPath":"/home/pabloelias/.pyenv/shims/black",
+    "python.formatting.provider": "black",
+    "python.sortImports.path": "/home/pabloelias/.local/bin/isort",
+}
+
