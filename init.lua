@@ -1,6 +1,7 @@
 require('basics')
 require('colors')
 require('coc-config')
+require('lazygit.utils').project_root_dir()
 local actions = require("telescope.actions")
 require('telescope').setup{
   pickers = {
@@ -22,10 +23,27 @@ require('telescope').setup{
   },
   extensions = {
     coc = {
-        theme = 'ivy',
-        prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
-    }
+      theme = "ivy",
+      prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
+    },
+    file_browser = {
+      theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
   },
+}
+require("toggleterm").setup{
+  -- size can be a number or function which is passed the current terminal
+  open_mapping = [[<c-\>]]
 }
 -- Lua:
 -- For dark theme (neovim's default)
@@ -82,10 +100,14 @@ require('lualine').setup {
   extensions = {}
 }
 
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('coc')
+require('telescope').load_extension("fzf")
+require('telescope').load_extension("coc")
+require("telescope").load_extension("file_browser")
+require("telescope").load_extension("lazygit")
+
 local prefix = vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")
 vim.opt.undodir = { prefix .. "/nvim/.undo//"}
+vim.opt.autoread=true
 vim.opt.backupdir = {prefix .. "/nvim/.backup//"}
 vim.opt.directory = { prefix .. "/nvim/.swp//"}
 vim.opt.undofile=true
@@ -126,14 +148,13 @@ vim.api.nvim_set_keymap('n', 'gt', ':bnext<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'gT', ':bprev<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>e', ':Telescope coc diagnostics<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>t', ':TagbarToggle<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>m', ':NvimTreeToggle<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>m', ':Telescope file_browser<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>pl', ':ProjectList<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>k', ':DoShowMarks<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>f', ':NvimTreeFindFile<CR>:NvimTreeFocus<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>tw', ':Tws<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>S', ':Startify <CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>ga', ':Git add %:p<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>gs', ':Git<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>gs', ':Telescope lazygit<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gc', ':Git commit -v -q<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gt', ':Git commit -v -q %:p<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', { noremap = true })
@@ -146,6 +167,12 @@ vim.api.nvim_set_keymap('n', '<Leader>gP', ':Git pull<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gh', ':Git browse<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<c-f>', ':Telescope find_files<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>a', ':Telescope live_grep<CR>', { noremap = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>f<space>",
+  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+  { noremap = true }
+)
 
 -- make TAB and SHIFT + TAB to navigate between buffers in normal mode
 vim.api.nvim_set_keymap('n', '<tab>', [[if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bn<CR>]], {noremap = true, silent = true})
@@ -208,35 +235,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
-
--- empty setup using defaults
-require("nvim-tree").setup()
-
--- OR setup with some options
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
-
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
-  ignore_install = { "phpdoc" },
-  context_commentstring = {
-    enable = true
-  },
-  highlight = {
-    enable = true,
-    disable = { "lua" }
-  },
-  indent = {
-    enable = true
-  }
-}
 
 require("yanky").setup({
     -- your configuration comes here
@@ -316,19 +314,25 @@ return require('packer').startup(function()
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   }
+  use {
+      "nvim-telescope/telescope-file-browser.nvim",
+      requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  }
   use 'nvim-telescope/telescope-smart-history.nvim'
   use 'gbprod/yanky.nvim'
   use 'kvrohit/rasmus.nvim'
   use 'nvim-treesitter/nvim-treesitter'
   use 'tpope/vim-commentary'
-  use 'Shatur/neovim-session-manager'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'tpope/vim-fugitive'
+  use {"akinsho/toggleterm.nvim", tag = '*'}
+
   use 'fannheyward/telescope-coc.nvim'
+  use "kdheepak/lazygit.nvim"
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { {'nvim-lua/plenary.nvim'}, { "kdheepak/lazygit.nvim" }  }
   }
   use {
     'nvim-lualine/lualine.nvim',
