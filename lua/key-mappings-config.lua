@@ -31,8 +31,7 @@ vim.api.nvim_set_keymap('n', '<Leader>gP', ':Git pull<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gh', ':Git browse<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<c-f>', ':Telescope find_files<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>a', ':Telescope live_grep<CR>', { noremap = true })
-vim.api.nvim_set_keymap("n", "<Leader>a", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { noremap = true } )
-vim.api.nvim_set_keymap('n', '<C-q>', ':Qfreplace<CR>:Qfreplace<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-r>', ':Qfreplace<CR>:Qfreplace<CR>', { noremap = true })
 vim.api.nvim_set_keymap(
   "n",
   "<Leader>f<space>",
@@ -79,3 +78,21 @@ vim.api.nvim_create_user_command('Tws',
 )
 vim.api.nvim_set_keymap('n', '<Leader>tw', ':Tws<CR>', { noremap = true })
 
+vim.cmd([[
+function!   QuickFixOpenAll()
+    if empty(getqflist())
+        return
+    endif
+    let s:prev_val = ""
+    for d in getqflist()
+        let s:curr_val = bufname(d.bufnr)
+        if (s:curr_val != s:prev_val)
+            exec "edit " . s:curr_val
+        endif
+        let s:prev_val = s:curr_val
+    endfor
+endfunction
+]])
+
+vim.api.nvim_set_keymap('n', '<leader>ka' , ':call QuickFixOpenAll()<CR>', { noremap=true, silent=false })
+vim.api.nvim_set_keymap('n', '<leader>kr' , ':Qfreplace<CR>', { noremap=true, silent=false })

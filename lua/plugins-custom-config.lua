@@ -18,6 +18,8 @@ require('telescope').setup{
     mappings = {
       i = {
         ["<esc>"] = actions.close,
+		["<C-o>"] = function(prompt_bufnr) require("telescope.actions").select_default(prompt_bufnr) require("telescope.builtin").resume() end,
+	    ["<C-q>"] = actions.send_to_qflist,
       },
     },
   },
