@@ -31,6 +31,8 @@ vim.api.nvim_set_keymap('n', '<Leader>gP', ':Git pull<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gh', ':Git browse<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<c-f>', ':Telescope find_files<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>a', ':Telescope live_grep<CR>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>a", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { noremap = true } )
+vim.api.nvim_set_keymap('n', '<C-q>', ':Qfreplace<CR>:Qfreplace<CR>', { noremap = true })
 vim.api.nvim_set_keymap(
   "n",
   "<Leader>f<space>",
@@ -43,6 +45,7 @@ vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', {silent = true})
 vim.api.nvim_set_keymap('n', 'gy', '<Plug>(coc-type-definition)', {silent = true})
 vim.api.nvim_set_keymap('n', 'gi', '<Plug>(coc-implementation)', {silent = true})
 vim.api.nvim_set_keymap('n', 'gr', ':Telescope coc references<CR>', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-k>', ':Telescope coc references<CR>', {silent = true})
 vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
@@ -75,3 +78,4 @@ vim.api.nvim_create_user_command('Tws',
   { nargs = 0 }
 )
 vim.api.nvim_set_keymap('n', '<Leader>tw', ':Tws<CR>', { noremap = true })
+

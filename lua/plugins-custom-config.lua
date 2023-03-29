@@ -1,5 +1,7 @@
 require('lazygit.utils').project_root_dir()
 local actions = require("telescope.actions")
+local lga_actions = require("telescope-live-grep-args.actions")
+
 -- Configure telescope
 require('telescope').setup{
   pickers = {
@@ -37,7 +39,17 @@ require('telescope').setup{
         },
       },
     },
-  },
+	live_grep_args = {
+			auto_quoting = true, -- enable/disable auto-quoting
+			-- define mappings, e.g.
+			mappings = { -- extend mappings
+					i = {
+							["<C-k>"] = lga_actions.quote_prompt(),
+							["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+					}
+			}
+	}
+  }
 }
 require("toggleterm").setup{
   -- size can be a number or function which is passed the current terminal
@@ -101,6 +113,7 @@ require('lualine').setup {
 require('telescope').load_extension("coc")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("lazygit")
+require("telescope").load_extension("live_grep_args")
 
 require("yanky").setup({
     -- your configuration comes here
@@ -108,3 +121,18 @@ require("yanky").setup({
     -- refer to the configuration section below
 })
 require("telescope").load_extension("yank_history")
+
+require"surround".setup {
+  context_offset = 100,
+  load_autogroups = false,
+  mappings_style = "sandwich",
+  map_insert_mode = true,
+  quotes = {"'", '"'},
+  brackets = {"(", '{', '['},
+  space_on_closing_char = false,
+  pairs = {
+    nestable = { b = { "(", ")" }, s = { "[", "]" }, B = { "{", "}" }, a = { "<", ">" } },
+    linear = { q = { "'", "'" }, t = { "`", "`" }, d = { '"', '"' } }
+  },
+  prefix = "s"
+}

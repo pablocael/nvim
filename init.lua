@@ -6,14 +6,14 @@ require('plugins-custom-config')
 return require('packer').startup(function()
   -- Packer plugin for packer :-}
   use 'wbthomason/packer.nvim'
-  
+
   -- Plenary is used to implement asynchoronous corountines (used by other plugins)
   use 'nvim-lua/plenary.nvim'
 
   -- Plugins that provides floating panels and supports different extensions
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'}, { "kdheepak/lazygit.nvim" }  }
+    requires = { {'nvim-lua/plenary.nvim'}, { "kdheepak/lazygit.nvim" }, { "nvim-telescope/telescope-live-grep-args.nvim" } }
   }
 
   -- Coc Extension for Telescope plugin
@@ -62,6 +62,8 @@ return require('packer').startup(function()
       require"surround".setup {mappings_style = "surround"}
     end
   }
+
+  use "thinca/vim-qfreplace"
 
 end)
 
