@@ -197,6 +197,10 @@ vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', {silent = true})
 vim.api.nvim_set_keymap('n', 'gy', '<Plug>(coc-type-definition)', {silent = true})
 vim.api.nvim_set_keymap('n', 'gi', '<Plug>(coc-implementation)', {silent = true})
 vim.api.nvim_set_keymap('n', 'gr', ':Telescope coc references<CR>', {silent = true})
+vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 
 -- Use K to show documentation in preview window.
 vim.api.nvim_set_keymap('n', 'K', ':call v:lua.show_documentation()<CR>', {silent = true})
