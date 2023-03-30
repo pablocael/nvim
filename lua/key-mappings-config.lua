@@ -30,7 +30,7 @@ vim.api.nvim_set_keymap('n', '<Leader>gp', ':Git push<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gP', ':Git pull<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gh', ':Git browse<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<c-f>', ':Telescope find_files<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>a', ':Telescope live_grep<CR>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { noremap = true } )
 vim.api.nvim_set_keymap('n', '<C-r>', ':Qfreplace<CR>:Qfreplace<CR>', { noremap = true })
 vim.api.nvim_set_keymap(
   "n",
