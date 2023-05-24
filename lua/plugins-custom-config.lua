@@ -116,6 +116,7 @@ require('telescope').load_extension("coc")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("lazygit")
 require("telescope").load_extension("live_grep_args")
+require("telescope").load_extension("recent_files")
 
 require("yanky").setup({
     -- your configuration comes here

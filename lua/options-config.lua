@@ -7,24 +7,25 @@ vim.opt.undofile=true
 vim.g.directory='$HOME/.config/nvim/swapfiles'
 vim.opt.listchars = {eol = '↵', tab = '>=', trail = '.'}
 vim.opt.list = true
+vim.g.python3_host_prog = '/home/pablo-elias/.pyenv/versions/3.9.16/bin/python'
 vim.opt.number=true
 vim.opt.relativenumber=true
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.nuw = 6
+vim.opt.tabstop=4
+vim.opt.shiftwidth=4
+vim.opt.expandtab=true
+vim.opt.cursorline=true
+vim.opt.cursorcolumn=true
 
 vim.g.latstatus=2
 vim.g.mapleader = ","
 vim.g.nofixendofline=true
 vim.g.smarttab=true
 vim.g.smartcase=true
-vim.opt.tabstop=4
 
-vim.g.shiftwidth=4
-vim.g.expandtab=true
 vim.g.list=true
 vim.g.background=dark
-vim.g.cursorline=true
-vim.g.cursorcolumn=true
 vim.g.hidden=true
 
 -- disable netrw at the very start of your init.lua (strongly advised)

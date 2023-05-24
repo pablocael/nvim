@@ -6,8 +6,8 @@
     "suggest.noselect": false,
     "suggest.echodocSupport": true,
     "python.jediEnabled": false,
-    "python.formatting.blackPath":"/home/pabloelias/.pyenv/shims/black",
+    "python.formatting.blackPath":"/home/pablo-elias/.pyenv/shims/black",
     "python.formatting.provider": "black",
-    "python.sortImports.path": "/home/pabloelias/.local/bin/isort",
+    "python.sortImports.path": "/home/pablo-elias/.local/bin/isort"
 }
 
