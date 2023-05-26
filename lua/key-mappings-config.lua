@@ -3,6 +3,11 @@ vim.api.nvim_set_keymap('n', '<Leader>S', ':Startify <CR>', { noremap = true, de
 vim.api.nvim_set_keymap('n', '<Leader>x', ':bd<CR>', { noremap = true, desc = "Delete Current Buffer" })
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true, desc = "Save Current Buffer" })
 vim.api.nvim_set_keymap('n', '<Leader>ps', ':ProjectList<CR>', { noremap = true, desc = "Troggle Show Projects" })
+-- Saves the file if modified and quit
+vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>x<cr>", { silent = true, desc = "quit current window" })
+
+-- Quit all opened buffers
+vim.api.nvim_set_keymap("n", "<leader>Q", "<cmd>qa!<cr>", { silent = true, desc = "quit nvim" })
 
 -- File Group
 vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files<CR>', { noremap = true })
