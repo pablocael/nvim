@@ -3,7 +3,6 @@ require("options-config")
 require("key-mappings-config")
 require("plugins-custom-config")
 
-
 local dap = require('dap')
 dap.adapters.python = {
     type = 'executable',
@@ -47,6 +46,17 @@ require("neotest").setup({
     }
 })
 
+require'soil'.setup{ 
+    -- If you want to use Plant UML jar version instead of the install version
+    puml_jar = "/home/pablo-elias/bin/plantuml.jar",
+    
+    -- If you want to customize the image showed when running this plugin
+    image = {
+        darkmode = false, -- Enable or disable darkmode 
+        format = "png", -- Choose between png or svg
+    }
+}
+
 return require("packer").startup(function()
     -- Packer plugin for packer :-}
     use "wbthomason/packer.nvim"
@@ -85,6 +95,9 @@ return require("packer").startup(function()
 
     use "mfussenegger/nvim-dap"
     use "mfussenegger/nvim-dap-python"
+
+    -- terraform syntax highlight
+    use "hashivim/vim-terraform"
 
     -- python tests
 
@@ -128,6 +141,12 @@ return require("packer").startup(function()
             require "surround".setup { mappings_style = "surround" }
         end
     }
+
+    -- puml support
+    use 'javiorfo/nvim-soil'
+
+    -- Optional for puml syntax highlighting:
+    use 'javiorfo/nvim-nyctophilia'
 
     -- install without yarn or npm
     use({

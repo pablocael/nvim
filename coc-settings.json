@@ -8,6 +8,19 @@
     "python.jediEnabled": false,
     "python.formatting.blackPath":"/home/pablo-elias/.pyenv/shims/black",
     "python.formatting.provider": "black",
-    "python.sortImports.path": "/home/pablo-elias/.local/bin/isort"
-}
+    "python.sortImports.path": "/home/pablo-elias/.local/bin/isort",
 
+	"languageserver": {
+		"terraform": {
+			"command": "terraform-ls",
+            "args": ["serve"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
+            "rootPatterns": [".terraform"],
+			"initializationOptions": {},
+			"settings": {}
+		}
+	}
+}

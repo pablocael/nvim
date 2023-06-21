@@ -14,7 +14,7 @@ vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files<CR>', { norema
 vim.api.nvim_set_keymap('n', '<Leader>fF', '<Plug>(coc-format)', { noremap = true, desc = "Format Code" })
 vim.api.nvim_set_keymap('n', '<Leader>fg', ':lua require(\'telescope\').extensions.live_grep_args.live_grep_args()<CR>',
     { noremap = true, desc = "Grep content in Files" })
-vim.api.nvim_set_keymap('n', '<Leader>fb', ':Telescope buffers ignore_current_buffer=true sort_lastused=true<CR>',
+vim.api.nvim_set_keymap('n', '<Leader>fb', ':Telescope buffers ignore_current_buffer=false sort_lastused=true<CR>',
     { noremap = true, desc = "Current Buffers" })
 vim.api.nvim_set_keymap('n', '<Leader>fs', ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
     { noremap = true, desc = 'Toggle File Browser' }

@@ -101,3 +101,12 @@ vim.cmd('command! -nargs=1 StartifyAddBookmark call v:lua.s_sy_add_bookmark(<q-a
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
+
+-- terraform commands 
+vim.cmd([[let g:terraform_align=1]])
+vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
+vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
+vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
+vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
+
