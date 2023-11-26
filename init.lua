@@ -46,14 +46,14 @@ require("neotest").setup({
     }
 })
 
-require'soil'.setup{ 
+require 'soil'.setup {
     -- If you want to use Plant UML jar version instead of the install version
     puml_jar = "/home/pablo-elias/bin/plantuml.jar",
-    
+
     -- If you want to customize the image showed when running this plugin
     image = {
-        darkmode = false, -- Enable or disable darkmode 
-        format = "png", -- Choose between png or svg
+        darkmode = false, -- Enable or disable darkmode
+        format = "png",   -- Choose between png or svg
     }
 }
 
@@ -153,6 +153,7 @@ return require("packer").startup(function()
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
     })
+    use "peterhoeg/vim-qml"
 
     use "thinca/vim-qfreplace"
 
@@ -162,5 +163,11 @@ return require("packer").startup(function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
         end
+    }
+    -- spell checker
+    use {
+        -- Optional but recommended
+        -- 'nvim-treesitter/nvim-treesitter',
+        'lewis6991/spellsitter.nvim',
     }
 end)

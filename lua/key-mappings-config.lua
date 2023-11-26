@@ -36,9 +36,11 @@ vim.api.nvim_set_keymap('n', '<Leader>fw', ':Tws<CR>', { noremap = true, desc = 
 -- Code group
 vim.api.nvim_set_keymap('n', '<Leader>cd', ':Telescope coc diagnostics<CR>',
     { noremap = true, desc = "Code Diagnostics" })
+vim.api.nvim_set_keymap('n', '<Leader>cc', ':Copilot<CR>', { silent = true, desc = "Copilot code suggestions" })
 vim.api.nvim_set_keymap('n', '<leader>cr', '<Plug>(coc-rename)', { noremap = true, desc = "Rename Symbol Under Cursor" })
 vim.api.nvim_set_keymap('n', 'cd', '<Plug>(coc-definition)', { silent = true, desc = "Go To Definition" })
 vim.api.nvim_set_keymap('n', 'cr', ':Telescope coc references<CR>', { silent = true, desc = "Find References" })
+
 
 -- Use k to show documentation in preview window.
 function show_documentation()
