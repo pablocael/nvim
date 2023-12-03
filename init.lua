@@ -96,6 +96,9 @@ return require("packer").startup(function()
     use "mfussenegger/nvim-dap"
     use "mfussenegger/nvim-dap-python"
 
+    -- latex preview and support in vim
+    use 'lervag/vimtex'
+
     -- terraform syntax highlight
     use "hashivim/vim-terraform"
 

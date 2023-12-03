@@ -36,6 +36,23 @@ vim.g.loaded_netrwPlugin = 1
 -- Change color of drop menu
 vim.api.nvim_command('hi Pmenu ctermbg=darkgray ctermfg=white')
 
+
+-- This is necessary for VimTeX to load properly. The "indent" is optional.
+-- Note that most plugin managers will do this automatically.
+vim.cmd('filetype plugin indent on')
+
+-- This enables Vim's and Neovim's syntax-related features. Without this, some
+-- VimTeX features will not work (see ":help vimtex-requirements" for more
+-- info).
+vim.cmd('syntax enable')
+
+-- Viewer options: One may configure the viewer either by specifying a built-in
+-- viewer method:
+vim.g.vimtex_view_method = 'zathura'
+
+-- Or with a generic interface:
+vim.g.vimtex_view_general_viewer = 'zathura'
+
 -- set current line color
 vim.api.nvim_command('autocmd WinEnter * setlocal cursorline')
 vim.api.nvim_command('autocmd WinLeave * setlocal nocursorline')
@@ -56,7 +73,7 @@ vim.g.startify_session_persistence    = 1
 vim.g.startify_session_delete_buffers = 1
 vim.g.startify_session_dir            = '~/.config/nvim/session'
 vim.g.startify_session_savevars       = { '&makeprg' }
-vim.g.startify_bookmarks              = { '~/.config/nvim/init.lua', '~/development/arene-ai-sdk', '~/development/inadatron', '~/development/arene-ai-kubeflow' }
+vim.g.startify_bookmarks              = { '~/.config/nvim/init.lua'}
 vim.g.startify_list_order             = {
       { '  Bookmarks:' },
       'bookmarks',

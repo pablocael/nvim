@@ -55,6 +55,8 @@ end
 
 vim.api.nvim_set_keymap('n', 'ck', ':call v:lua.show_documentation()<CR>', { silent = true })
 
+-- Latex group
+vim.api.nvim_set_keymap('n', '<Leader>tv', ':VimtexView<CR>', { noremap = true })
 -- Git Group
 vim.api.nvim_set_keymap('n', '<Leader>gs', ':Telescope lazygit<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gd', ':Git diff<CR>', { noremap = true })
